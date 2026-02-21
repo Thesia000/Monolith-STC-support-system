@@ -1,0 +1,11 @@
+fine_start_time:
+900000
+fine_per_second:
+16.6666
+base_fine:
+15000
+auto_alert_time:
+150000
+auto_alert:
+true
+<<END>>

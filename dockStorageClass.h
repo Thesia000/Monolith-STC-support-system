@@ -3,6 +3,7 @@
 #include <map>
 #include <cstdint>
 #include <string>
+#include "config.h"
 struct dockedShip{
     std::string ship_name = "Urist McShip";
     uint64_t inicial_dock_time = 0;
@@ -11,13 +12,13 @@ struct dockedShip{
 };
 class dockStorageClass{
     public:
-    uint64_t fine_start_time = 1000 * 60 * 15;//fine starts at 15min
+    uint64_t fine_start_time;
     uint64_t last_auto_alert_time = 0;
-    uint64_t auto_alert_time = 1000 * 60 * 2.5;//every 2.5 min
-    bool auto_alert = true;
-    double fine_per_second = 16.666;//results in 1k fine per min
-    double base_fine = 15000;//applied for overstaying
-    dockStorageClass();
+    uint64_t auto_alert_time;
+    bool auto_alert;
+    double fine_per_second;
+    double base_fine;
+    dockStorageClass(Config* config);
     std::map<std::string, dockedShip> docked_ships_map;
     void addShip(std::string ship_name,std::string dock);
     void removeShip(std::string ship_name);

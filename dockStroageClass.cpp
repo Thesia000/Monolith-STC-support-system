@@ -3,7 +3,12 @@
 #include <cmath>
 #include "dockStorageClass.h"
 #include "helperFunctions.h"
-dockStorageClass::dockStorageClass(){
+dockStorageClass::dockStorageClass(Config* config){
+    this->fine_start_time = config->fine_start_time;
+    this->fine_per_second = config->fine_per_second;
+    this->base_fine = config->base_fine;
+    this->auto_alert_time = config->auto_alert_time;
+    this->auto_alert = config->auto_alert;
     return;
 }
 void dockStorageClass::addShip(std::string ship_name,std::string dock){
