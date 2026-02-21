@@ -3,13 +3,6 @@
 #include <map>
 #include <cstdint>
 #include <string>
-enum change{
-    VAR_FINE_START,
-    VAR_FINE_BASE,
-    VAR_FINE_PER_SEC,
-    VAR_AUTO_ALERT_INTERVAL,
-    VAR_AUTO_ALERT
-};
 struct dockedShip{
     std::string ship_name = "Urist McShip";
     uint64_t inicial_dock_time = 0;
@@ -33,6 +26,6 @@ class dockStorageClass{
     void raiseOverstayAlert();//triggers ever 2.5 min can be configured
     uint64_t nextOserstayAlertTime();
     void printAllShips(uint64_t time);
-    void ajustValue(change change_var,uint64_t value);
+    void ajustValue(std::string change_var,std::string value);
 };
 #endif

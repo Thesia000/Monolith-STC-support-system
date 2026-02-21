@@ -60,6 +60,13 @@ player_order get_player_interaction(){
         word = nextWord(player_input,1);
         return_player_order.arguments[0] = word;
     }
+    else if(word=="config"){
+        return_player_order.action = AT_CONFIG;
+        word = nextWord(player_input,1);
+        return_player_order.arguments[0] = word;
+        word = nextWord(player_input,2);
+        return_player_order.arguments[1] = word;
+    }
 
     return return_player_order;
 };
@@ -67,15 +74,23 @@ void print_help(){
     //help
     std::cout<<seperator<<"help: showes this text"<<std::endl;
     //print
+    std::cout<<std::endl;
     std::cout<<"print: displays all times and fines a ship has acrude"<<std::endl;
     //cls
+    std::cout<<std::endl;
     std::cout<<"cls: clears the console"<<std::endl;
     //assign
+    std::cout<<std::endl;
     std::cout<<"assign.<arg1>.<arg2>: Assigns the ship <arg2> to the dock <arg1>"<<std::endl;
     //unassign
+    std::cout<<std::endl;
     std::cout<<"unassign.<arg>: Unassigns the ship at dock <arg>"<<std::endl;
     //unassign_name
+    std::cout<<std::endl;
     std::cout<<"unassign_name.<arg>: Unassigns the ship with the name <arg>"<<std::endl;
+    //config
+    std::cout<<std::endl;
+    std::cout<<"config.<arg1>.<arg2>: Changes the variable <arg1> to the value <arg2>. Valid variables and types: \n-[fine_start_time,uint64,in ms],\n-[fine_per_second,double],\n-[base_fine,double],\n-[auto_alert_time,unit64,in ms],\n-[auto_alert,bool]"<<std::endl;
     return;
 };
 void print_dock_status(warpper* warpper_object){
@@ -107,6 +122,9 @@ void player_interaction_loop(warpper* warpper_object){
         }
         else if(order.action == AT_UNASSIGN_NAME){
             warpper_object->thread_dockStorage_object->removeShip(order.arguments[0]);
+        }
+        else if(order.action == AT_CONFIG){
+            warpper_object->thread_dockStorage_object->ajustValue(order.arguments[0],order.arguments[1]);
         }
     }
 };

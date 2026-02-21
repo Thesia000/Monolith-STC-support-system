@@ -58,3 +58,29 @@ void dockStorageClass::printAllShips(uint64_t time){
     }
     return;
 }
+void dockStorageClass::ajustValue(std::string change_var,std::string value){
+    if(change_var == "fine_start_time"){
+        this->fine_start_time = convertStringToUint(value);
+        std::cout << "fine_start_time is now set to: " << this->fine_start_time/1000/60.0<<"min\n";
+    }
+    else if(change_var=="fine_per_second"){
+        this->fine_per_second = convertStringToDouble(value);
+        std::cout << "fine_per_second is now set to: " << this->fine_per_second<<"spesos per second\n";
+    }
+    else if(change_var=="base_fine"){
+        this->base_fine = convertStringToDouble(value);
+        std::cout << "base_fine is now set to: " << this->base_fine<<"spesos\n";
+    }
+    else if(change_var=="auto_alert_time"){
+        this->auto_alert_time = convertStringToUint(value);
+        std::cout << "auto_alert_time is now set to: " << this->auto_alert_time/1000/60.0<<"min\n";
+    }
+    else if(change_var=="auto_alert"){
+        this->auto_alert = convertStringToBool(value);
+        std::cout << "auto_alert is now set to: " << this->auto_alert<<"\n";
+    }else{
+        std::cout<<"The variable: "<<change_var<<" was not recognised";
+    }
+
+    return;
+}

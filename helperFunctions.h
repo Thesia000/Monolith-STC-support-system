@@ -15,4 +15,7 @@ class warpper{
 uint64_t getTimeMS();
 void printStatics();
 const std::string seperator = "\n#########################################################################\n\n";
+uint64_t convertStringToUint(std::string input);
+double convertStringToDouble(std::string input);
+bool convertStringToBool(std::string input);
 #endif

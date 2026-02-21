@@ -10,7 +10,8 @@ enum action_types{
     AT_CLS,
     AT_ASSIGN,
     AT_UNASSIGN,
-    AT_UNASSIGN_NAME
+    AT_UNASSIGN_NAME,
+    AT_CONFIG
 };
 struct player_order{
     enum action_types action;
