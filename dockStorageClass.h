@@ -29,5 +29,6 @@ class dockStorageClass{
     uint64_t nextOserstayAlertTime();
     void printAllShips(uint64_t time);
     void ajustValue(std::string change_var,std::string value);
+    void fine(std::string dock, std::string value);
 };
 #endif

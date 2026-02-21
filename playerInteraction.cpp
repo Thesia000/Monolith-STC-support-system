@@ -67,6 +67,13 @@ player_order get_player_interaction(){
         word = nextWord(player_input,2);
         return_player_order.arguments[1] = word;
     }
+    else if(word=="fine"){
+        return_player_order.action = AT_FINE;
+        word = nextWord(player_input,1);
+        return_player_order.arguments[0] = word;
+        word = nextWord(player_input,2);
+        return_player_order.arguments[1] = word;
+    }
 
     return return_player_order;
 };
@@ -91,14 +98,35 @@ void print_help(){
     //config
     std::cout<<std::endl;
     std::cout<<"config.<arg1>.<arg2>: Changes the variable <arg1> to the value <arg2>. Valid variables and types: \n-[fine_start_time,uint64,in ms],\n-[fine_per_second,double],\n-[base_fine,double],\n-[auto_alert_time,unit64,in ms],\n-[auto_alert,bool]"<<std::endl;
+    //fine
+    std::cout<<std::endl;
+    std::cout<<"fine.<arg1>.<arg2>: adds a fine to the ship docked at dock <arg1> in hight of <arg2>spessos."<<std::endl;
     return;
 };
 void print_dock_status(warpper* warpper_object){
     warpper_object->thread_dockStorage_object->printAllShips(getTimeMS());
     return;
 }
+void print_start(){
+std::cout<<":x+x+xx+xx++x+x+xx+xx+xx+x+x+xx+xx+xx+x+x+x;\n";
+std::cout<<":;::::::::;:::::::;;:;::;:::::::;:;;:;:;;:X;\tWelcome the the NT STCAS\n";
+std::cout<<":;;XXXX$X;;$XXXXXX;;;;;;;;xXXXX;;;;;;;;;;;X;\tS.tation\n";
+std::cout<<":;;$X$X$X++$XX$X$X;;x+++;xX$X$X++x;+++X+++X;\tT.raffic\n";
+std::cout<<":;:++XX$$++$XX$XXX$$x;++;+XXX$X+;+;+++x+++X;\tC.ontroll\n";
+std::cout<<":;;++X$XX++$XXXX$XXX+;++++XXXXX+++;+++++++X;\tA.assistant\n";
+std::cout<<":;;+;x+$$;+$XX$X++$XX$++x;+$XXX++$X+;+;++;X;\tS.ystem\n";
+std::cout<<":;;++X+XX;+$XXXXx+X$XX++x++XX$X++XX+;+;++;X;\n";
+std::cout<<":;:;;;;+;;;$$XXx;;;;$XX$++x$XXX+;X$$X++;;;X;\n";
+std::cout<<":;:++;+x;++$XX$x;+;+$$X$++X$XXX++XX$X++;++X;\n";
+std::cout<<":;:;+;++;+;$XX$x;+;;+;$XX$XXX$X+;$XX$XX+;;X;\n";
+std::cout<<":;:;;;;;;;;$XXXx;;;;+;X$XXX$XXX;;$$X$XX+;;X;\n";
+std::cout<<"::::::::::::::::::::::::::::::::::::::::::::\n";
+std::cout<<":;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;\n";
+
+
+}
 void player_interaction_loop(warpper* warpper_object){
-    std::cout <<seperator<< "Welcome to the Station Traffic Controll managment System Controller\n\n";
+    print_start();
     while(true){
         player_order order=player_order{.action=AT_DEFAULT};
         std::cout<<seperator<<"Enter next order: ";
@@ -114,6 +142,7 @@ void player_interaction_loop(warpper* warpper_object){
         }
         else if(order.action == AT_CLS){
             system("cls");
+            print_start();
         }
         else if(order.action == AT_ASSIGN){
             warpper_object->thread_dockStorage_object->addShip(order.arguments[1],order.arguments[0]);
@@ -126,6 +155,9 @@ void player_interaction_loop(warpper* warpper_object){
         }
         else if(order.action == AT_CONFIG){
             warpper_object->thread_dockStorage_object->ajustValue(order.arguments[0],order.arguments[1]);
+        }
+        else if(order.action == AT_FINE){
+            warpper_object->thread_dockStorage_object->fine(order.arguments[0],order.arguments[1]);
         }
     }
 };

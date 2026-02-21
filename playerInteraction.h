@@ -11,7 +11,8 @@ enum action_types{
     AT_ASSIGN,
     AT_UNASSIGN,
     AT_UNASSIGN_NAME,
-    AT_CONFIG
+    AT_CONFIG,
+    AT_FINE
 };
 struct player_order{
     enum action_types action;
@@ -19,4 +20,5 @@ struct player_order{
 };
 player_order get_player_interaction();
 void print_help();
+void print_start();
 #endif

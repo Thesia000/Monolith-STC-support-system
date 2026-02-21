@@ -94,3 +94,8 @@ void dockStorageClass::ajustValue(std::string change_var,std::string value){
 
     return;
 }
+void dockStorageClass::fine(std::string dock, std::string value){
+    this->docked_ships_map[dock].fine += convertStringToUint(value);
+    std::cout<<"The ship:"<<this->docked_ships_map[dock].ship_name<<" at dock: "<<dock<<" has been fined: "<< value<<"spesos.\n This means they now owe us:"<<this->docked_ships_map[dock].fine<<"spessos.\n";
+    return;
+}
