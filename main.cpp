@@ -6,7 +6,7 @@
 #include "playerInteractionLoop.h"
 #include "internalLogicLoop.h"
 int main(int, char**){
-    std::cout << "Welcome to the Station Traffic Controll managment System Controller\n";
+    
     bool active = true;
     Config config_data= Config();
     load_config(&config_data);

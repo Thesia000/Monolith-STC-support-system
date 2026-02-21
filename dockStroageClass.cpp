@@ -40,6 +40,11 @@ void dockStorageClass::updateShipFines(){
     return;
 }
 void dockStorageClass::raiseOverstayAlert(){
+    if(!this->first_auto_alert){
+        this->first_auto_alert = true;
+        this->last_auto_alert_time = getTimeMS();
+        return;
+    }
     if(!this->auto_alert)return;
     std::cout << seperator << "Overstay and fine alert\n\n";
     bool alert_raised = false;

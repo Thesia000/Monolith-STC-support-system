@@ -41,7 +41,7 @@ void load_config(Config* config){
     std::string line2;
     
     std::string filename = "config";
-    if(std::filesystem::exists(filename)){
+    if(!std::filesystem::exists(filename)){
         no_config_detected();//emegency create the file
     }
     std::ifstream config_file(filename);
@@ -189,11 +189,11 @@ This is project specific the code generates the config file in a emergency
 */
 void no_config_detected(){
     std::ofstream NewConfig("config");
-    NewConfig <<"fine_start_time\n900000\n";
-    NewConfig <<"fine_per_second\n16.6666\n";
-    NewConfig <<"base_fine\n15000\n";
-    NewConfig <<"auto_alert_time\n150000\n";
-    NewConfig <<"auto_alert\ntrue\n";
+    NewConfig <<"fine_start_time:\n900000\n";
+    NewConfig <<"fine_per_second:\n16.6666\n";
+    NewConfig <<"base_fine:\n15000\n";
+    NewConfig <<"auto_alert_time:\n150000\n";
+    NewConfig <<"auto_alert:\ntrue\n";
     NewConfig <<"<<END>>";
     NewConfig.close();
     return;

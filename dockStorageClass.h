@@ -12,6 +12,7 @@ struct dockedShip{
 };
 class dockStorageClass{
     public:
+    bool first_auto_alert = false;
     uint64_t fine_start_time;
     uint64_t last_auto_alert_time = 0;
     uint64_t auto_alert_time;

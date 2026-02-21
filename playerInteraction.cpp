@@ -98,6 +98,7 @@ void print_dock_status(warpper* warpper_object){
     return;
 }
 void player_interaction_loop(warpper* warpper_object){
+    std::cout <<seperator<< "Welcome to the Station Traffic Controll managment System Controller\n\n";
     while(true){
         player_order order=player_order{.action=AT_DEFAULT};
         std::cout<<seperator<<"Enter next order: ";
